@@ -10,6 +10,7 @@ class Log:
     def __init__(self):
         self.pwd = "password"
         self.gee_version = "system version"
+        self.gee_url = "http://192.168.199.1/"
 
     def login(self):
 
@@ -19,10 +20,9 @@ class Log:
         option.add_argument("--disable-gpu")
         option.add_argument("--disable-dev-shm-usage")
         option.add_argument("--no-sandbox")
-        # option.add_argument("--headless")
-        # 如果配置环境变量可以不写绝对路径
+        option.add_argument("--headless")
         wd = webdriver.Chrome(options=option)
-        wd.get("http://192.168.1.1/")
+        wd.get(self.gee_url)
         wait = WebDriverWait(wd, 300)
         wd.implicitly_wait(30)  # 设置隐式等待
         # print("finish init webdriver")
