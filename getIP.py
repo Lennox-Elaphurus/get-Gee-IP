@@ -2,6 +2,7 @@
 import time
 
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -27,20 +28,18 @@ class Log:
         wd.implicitly_wait(30)  # 设置隐式等待
         # print("finish init webdriver")
 
-        wd.find_element_by_xpath("//*[@id='bd']/div/div/input[1]").send_keys(self.pwd)
+        wd.find_element(By.XPATH, "//*[@id='bd']/div/div/input[1]").send_keys(self.pwd)
         time.sleep(0.5)
-        try:
-            wait.until(ec.visibility_of(wd.find_element_by_id("submit"))).click()
-        except Exception as e:
-            print(e.args)
+
+        wait.until(ec.visibility_of(wd.find_element(By.ID, "submit"))).click()
         # print("finish login")
 
-        wait.until(ec.visibility_of(wd.find_element_by_xpath("//*[@id='ment_system']"))).click()
+        wait.until(ec.visibility_of(wd.find_element(By.XPATH, "//*[@id='ment_system']"))).click()
         # print("click ment_system")
 
         wait.until(ec.text_to_be_present_in_element(("id", "current_sys_board_info"), self.gee_version))
         time.sleep(0.5)
-        ip = wd.find_element_by_xpath("//*[@id='wan_ip_v4']/td[2]/span").text
+        ip = wd.find_element(By.XPATH, "//*[@id='wan_ip_v4']/td[2]/span").text
         ip = ip.split()[0]
         print(ip)
 
@@ -48,5 +47,8 @@ class Log:
 
 
 if __name__ == "__main__":
-    loging = Log()
-    loging.login()
+    try:
+        loging = Log()
+        loging.login()
+    except Exception as e:
+        print(e.args)
