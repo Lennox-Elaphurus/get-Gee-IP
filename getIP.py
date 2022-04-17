@@ -1,17 +1,9 @@
 # encoding:UTF-8
-from selenium import webdriver
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support import expected_conditions as ec
-from selenium.common.exceptions import TimeoutException
-from selenium.common.exceptions import SessionNotCreatedException
-from selenium.webdriver.support.select import Select
-import sys
-import os
-import requests
 import time
-import re
+
+from selenium import webdriver
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class Log:
